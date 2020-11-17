@@ -505,7 +505,7 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         let store = CNContactStore()
         let containerID = store.defaultContainerIdentifier()
 
-        result["zzz"] = containerID
+        result["zzz"] = "TEST"
 
         if contact.isKeyAvailable(CNContactThumbnailImageDataKey) {
             if let avatarData = contact.thumbnailImageData {
