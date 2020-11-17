@@ -522,6 +522,8 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
                 } catch {
                     print("Error fetching containers")
                 }
+        } catch {
+            print("Error fetching containers")
         }
 
         
