@@ -511,7 +511,7 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         result["zzz"] = ""
         let store = CNContactStore()
         var allContainers: [CNContainer] = []
-        var thisZZZ: [String] = ""
+        var thisZZZ = ""
 
         do {
 
