@@ -512,6 +512,7 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         let store = CNContactStore()
         var allContainers: [CNContainer] = []
         var thisZZZ = ""
+        var thisZZZType = ""
 
         do {
 
@@ -519,14 +520,23 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
             
             // allContainers = try store.containers(matching: nil)
             allContainers = try store.containers(matching: fetchContainerPredicate)
-            var intContainerType = 0
 
             // Loop the containers
             for container in allContainers {
-                intContainerType = container.type.toRaw()
-                print("Container ID: " + container.identifier)
-                print("Container Name: " + container.name)
-                thisZZZ = thisZZZ + ":" + container.name + " (" + ")"
+                thisZZZType = ""
+
+                // print("Container ID: " + container.identifier)
+                // print("Container Name: " + container.name)
+
+                if ( contact.type == CNContainerType.local ) {
+                    thisZZZType = "Local"
+                } else if ( contact.type == CNContainerType.exchange ) {
+                    thisZZZType = "Exchange"
+                } else if ( contact.type == CNContainerType.cardDAV ) {
+                    thisZZZType = "cardDAV"
+                }
+
+                thisZZZ = thisZZZ + ":" + container.name + " (" + thisZZZType + ")"
             }
 
             result["zzz"] = thisZZZ
