@@ -172,9 +172,10 @@ class Contact {
     this.androidAccountType,
     this.androidAccountTypeRaw,
     this.androidAccountName,
+    this.zzz
   });
 
-  String identifier, displayName, givenName, middleName, prefix, suffix, familyName, company, jobTitle;
+  String identifier, displayName, givenName, middleName, prefix, suffix, familyName, company, jobTitle, zzz;
   String androidAccountTypeRaw, androidAccountName;
   AndroidAccountType androidAccountType;
   Iterable<Item> emails = [];
@@ -199,6 +200,7 @@ class Contact {
     suffix = m["suffix"];
     company = m["company"];
     jobTitle = m["jobTitle"];
+    zzz = m["zzz"];
     androidAccountTypeRaw = m["androidAccountType"];
     androidAccountType = accountTypeFromString(androidAccountTypeRaw);
     androidAccountName = m["androidAccountName"];
@@ -242,6 +244,7 @@ class Contact {
       "suffix": contact.suffix,
       "company": contact.company,
       "jobTitle": contact.jobTitle,
+      "zzz": contact.zzz,
       "androidAccountType": contact.androidAccountTypeRaw,
       "androidAccountName": contact.androidAccountName,
       "emails": emails,
@@ -265,6 +268,7 @@ class Contact {
       familyName: this.familyName ?? other.familyName,
       company: this.company ?? other.company,
       jobTitle: this.jobTitle ?? other.jobTitle,
+      zzz: this.zzz ?? other.zzz,
       androidAccountType: this.androidAccountType ?? other.androidAccountType,
       androidAccountName: this.androidAccountName ?? other.androidAccountName,
       emails: this.emails == null
@@ -295,6 +299,7 @@ class Contact {
         this.familyName == other.familyName &&
         this.identifier == other.identifier &&
         this.jobTitle == other.jobTitle &&
+        this.zzz == other.zzz &&
         this.androidAccountType == other.androidAccountType &&
         this.androidAccountName == other.androidAccountName &&
         this.middleName == other.middleName &&
@@ -316,6 +321,7 @@ class Contact {
       this.givenName,
       this.identifier,
       this.jobTitle,
+      this.zzz,
       this.androidAccountType,
       this.androidAccountName,
       this.middleName,
