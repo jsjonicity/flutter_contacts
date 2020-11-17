@@ -515,9 +515,10 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
 
         do {
 
-            // let fetchContPredicate = CNContainer.predicateForContainerOfContact(withIdentifier: contact.identifier)
+            let fetchContainerPredicate = CNContainer.predicateForContainerOfContact(withIdentifier: contact.identifier)
             
-            allContainers = try store.containers(matching: nil)
+            // allContainers = try store.containers(matching: nil)
+            allContainers = try store.containers(matching: fetchContainerPredicate)
 
             // Loop the containers
             for container in allContainers {
