@@ -98,7 +98,13 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         }
     }
 
-    func getContacts(query : String?, withThumbnails: Bool, photoHighResolution: Bool, phoneQuery: Bool, emailQuery: Bool = false, orderByGivenName: Bool, localizedLabels: Bool) -> [[String:Any]]{
+    func getContacts(query : String?, 
+             withThumbnails: Bool, 
+        photoHighResolution: Bool, 
+                 phoneQuery: Bool, 
+                 emailQuery: Bool = false, 
+           orderByGivenName: Bool, 
+            localizedLabels: Bool) -> [[String:Any]]{
 
         var contacts : [CNContact] = []
         var result = [[String:Any]]()
@@ -127,6 +133,7 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         }
 
         let fetchRequest = CNContactFetchRequest(keysToFetch: keys as! [CNKeyDescriptor])
+
         // Set the predicate if there is a query
         if query != nil && !phoneQuery && !emailQuery {
             fetchRequest.predicate = CNContact.predicateForContacts(matchingName: query!)
@@ -501,11 +508,23 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         result["suffix"] = contact.nameSuffix
         result["company"] = contact.organizationName
         result["jobTitle"] = contact.jobTitle
-        
+        result["zzz"] = ""
         let store = CNContactStore()
-        let containerID = store.defaultContainerIdentifier()
+        var allContainers: [CNContainer] = []
+        do {
+                allContainers = try contactStore.containers(matching: nil)
 
-        result["zzz"] = "TEST"
+                // Loop the containers
+                for container in allContainers {
+                    print("Container ID: " + container.identifier)
+                    print("Container Name: " + container.name)
+                    result["zzz"] = container.name
+                } catch {
+                    print("Error fetching containers")
+                }
+        }
+
+        
 
         if contact.isKeyAvailable(CNContactThumbnailImageDataKey) {
             if let avatarData = contact.thumbnailImageData {
