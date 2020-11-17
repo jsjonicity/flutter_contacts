@@ -536,7 +536,7 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
                     thisZZZType = "cardDAV"
                 }
 
-                thisZZZ = thisZZZ + ":" + container.name + " (" + thisZZZType + ")"
+                thisZZZ = container.identifier + " : " + container.name + " (" + thisZZZType + ")"
             }
 
             result["zzz"] = thisZZZ
