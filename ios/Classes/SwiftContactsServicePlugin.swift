@@ -528,11 +528,11 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
                 // print("Container ID: " + container.identifier)
                 // print("Container Name: " + container.name)
 
-                if ( contact.type == CNContainerType.local ) {
+                if ( container.type == CNContainerType.local ) {
                     thisZZZType = "Local"
-                } else if ( contact.type == CNContainerType.exchange ) {
+                } else if ( container.type == CNContainerType.exchange ) {
                     thisZZZType = "Exchange"
-                } else if ( contact.type == CNContainerType.cardDAV ) {
+                } else if ( container.type == CNContainerType.cardDAV ) {
                     thisZZZType = "cardDAV"
                 }
 
