@@ -511,16 +511,19 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         result["zzz"] = ""
         let store = CNContactStore()
         var allContainers: [CNContainer] = []
-        
-            allContainers = store.containers(matching: nil)
+
+        do {        
+            allContainers = try store.containers(matching: nil)
 
             // Loop the containers
-            for container in allContainers {
-                print("Container ID: " + container.identifier)
-                print("Container Name: " + container.name)
-                result["zzz"] = container.name
-            }
-
+            // for container in allContainers {
+            //     print("Container ID: " + container.identifier)
+            //     print("Container Name: " + container.name)
+            //     result["zzz"] = container.name
+            // }
+        } catch {
+            print("An error on containers")
+        }
         
 
         if contact.isKeyAvailable(CNContactThumbnailImageDataKey) {
