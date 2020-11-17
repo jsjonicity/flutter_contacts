@@ -501,8 +501,11 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         result["suffix"] = contact.nameSuffix
         result["company"] = contact.organizationName
         result["jobTitle"] = contact.jobTitle
+        
+        let store = CNContactStore()
+        let containerID = store.defaultContainerIdentifier()
 
-        result["zzz"] = contact.identifier
+        result["zzz"] = containerID
 
         if contact.isKeyAvailable(CNContactThumbnailImageDataKey) {
             if let avatarData = contact.thumbnailImageData {
