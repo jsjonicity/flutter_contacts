@@ -519,12 +519,14 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
             
             // allContainers = try store.containers(matching: nil)
             allContainers = try store.containers(matching: fetchContainerPredicate)
+            let intContainerType = 0
 
             // Loop the containers
             for container in allContainers {
+                intContainerType = container.type
                 print("Container ID: " + container.identifier)
                 print("Container Name: " + container.name)
-                thisZZZ = thisZZZ + ":" + container.name + " (" + String(container.type) + ")"
+                thisZZZ = thisZZZ + ":" + container.name + " (" + ")"
             }
 
             result["zzz"] = thisZZZ
