@@ -165,6 +165,8 @@ class Contact {
     this.company,
     this.jobTitle,
     this.emails,
+    this.urls,
+    this.socials,
     this.phones,
     this.postalAddresses,
     this.avatar,
@@ -172,13 +174,17 @@ class Contact {
     this.androidAccountType,
     this.androidAccountTypeRaw,
     this.androidAccountName,
-    this.zzz
+    this.iosContainerName,
+    this.iosContainerIdentifier,
+    this.iosContainerType
   });
 
-  String identifier, displayName, givenName, middleName, prefix, suffix, familyName, company, jobTitle, zzz;
+  String identifier, displayName, givenName, middleName, prefix, suffix, familyName, company, jobTitle, iosContainerName, iosContainerIdentifier, iosContainerType;
   String androidAccountTypeRaw, androidAccountName;
   AndroidAccountType androidAccountType;
   Iterable<Item> emails = [];
+  Iterable<Item> urls = [];
+  Iterable<Item> socials = [];
   Iterable<Item> phones = [];
   Iterable<PostalAddress> postalAddresses = [];
   Uint8List avatar;
@@ -200,7 +206,9 @@ class Contact {
     suffix = m["suffix"];
     company = m["company"];
     jobTitle = m["jobTitle"];
-    zzz = m["zzz"];
+    iosContainerName = m["iosContainerName"];
+    iosContainerIdentifier = m["iosContainerIdentifier"];
+    iosContainerType = m["iosContainerType"];
     androidAccountTypeRaw = m["androidAccountType"];
     androidAccountType = accountTypeFromString(androidAccountTypeRaw);
     androidAccountName = m["androidAccountName"];
@@ -244,7 +252,9 @@ class Contact {
       "suffix": contact.suffix,
       "company": contact.company,
       "jobTitle": contact.jobTitle,
-      "zzz": contact.zzz,
+      "iosContainerName": contact.iosContainerName,
+      "iosContainerIdentifier": contact.iosContainerIdentifier,
+      "iosContainerType": contact.iosContainerType,
       "androidAccountType": contact.androidAccountTypeRaw,
       "androidAccountName": contact.androidAccountName,
       "emails": emails,
@@ -268,7 +278,9 @@ class Contact {
       familyName: this.familyName ?? other.familyName,
       company: this.company ?? other.company,
       jobTitle: this.jobTitle ?? other.jobTitle,
-      zzz: this.zzz ?? other.zzz,
+      iosContainerName: this.iosContainerName ?? other.iosContainerName,
+      iosContainerIdentifier: this.iosContainerIdentifier ?? other.iosContainerIdentifier,
+      iosContainerType: this.iosContainerType ?? other.iosContainerType,
       androidAccountType: this.androidAccountType ?? other.androidAccountType,
       androidAccountName: this.androidAccountName ?? other.androidAccountName,
       emails: this.emails == null
@@ -299,7 +311,9 @@ class Contact {
         this.familyName == other.familyName &&
         this.identifier == other.identifier &&
         this.jobTitle == other.jobTitle &&
-        this.zzz == other.zzz &&
+        this.iosContainerName == other.iosContainerName &&
+        this.iosContainerIdentifier == other.iosContainerIdentifier &&
+        this.iosContainerType == other.iosContainerType &&
         this.androidAccountType == other.androidAccountType &&
         this.androidAccountName == other.androidAccountName &&
         this.middleName == other.middleName &&
@@ -321,7 +335,9 @@ class Contact {
       this.givenName,
       this.identifier,
       this.jobTitle,
-      this.zzz,
+      this.iosContainerName,
+      this.iosContainerIdentifier,
+      this.iosContainerType,
       this.androidAccountType,
       this.androidAccountName,
       this.middleName,

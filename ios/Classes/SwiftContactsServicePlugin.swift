@@ -508,12 +508,14 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         result["suffix"] = contact.nameSuffix
         result["company"] = contact.organizationName
         result["jobTitle"] = contact.jobTitle
-        result["zzz"] = ""
+        result["iosContainerName"] = ""
+        result["iosContainerIdentifier"] = ""
+        result["iosContainerType"] = ""
+
+        
         let store = CNContactStore()
         var allContainers: [CNContainer] = []
-        var thisZZZ = ""
-        var thisZZZType = ""
-
+        
         do {
 
             let fetchContainerPredicate = CNContainer.predicateForContainerOfContact(withIdentifier: contact.identifier)
@@ -523,25 +525,23 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
 
             // Loop the containers
             for container in allContainers {
-                thisZZZType = ""
-
-                // print("Container ID: " + container.identifier)
-                // print("Container Name: " + container.name)
 
                 if ( container.type == CNContainerType.local ) {
-                    thisZZZType = "Local"
+                    result["iosContainerType"] = "Local"
                 } else if ( container.type == CNContainerType.exchange ) {
-                    thisZZZType = "Exchange"
+                    result["iosContainerType"] = "Exchange"
                 } else if ( container.type == CNContainerType.cardDAV ) {
-                    thisZZZType = "cardDAV"
+                    result["iosContainerType"] = "cardDAV"
+                } else if ( container.type == CNContainerType.unassigned ) {
+                    result["iosContainerType"] = "unassigned"
                 }
 
-                thisZZZ = container.identifier + " : " + container.name + " (" + thisZZZType + ")"
-            }
+                result["iosContainerName"] = container.name
+                result["iosContainerIdentifier"] = container.identifier
 
-            result["zzz"] = thisZZZ
+            }
         } catch {
-            print("An error on containers")
+            // print("An error on containers")
         }
         
 
