@@ -512,15 +512,19 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         let store = CNContactStore()
         var allContainers: [CNContainer] = []
 
-        do {        
-            allContainers = try store.containers(matching: nil)
+        do {
 
-            // Loop the containers
-            for container in allContainers {
-                print("Container ID: " + container.identifier)
-                print("Container Name: " + container.name)
-                result["zzz"] = container.identifier
-            }
+            let fetchContPredicate = CNContainer.predicateForContainerOfContact(withIdentifier: contact.identifier)
+            
+            
+            // allContainers = try store.containers(matching: nil)
+
+            // // Loop the containers
+            // for container in allContainers {
+            //     print("Container ID: " + container.identifier)
+            //     print("Container Name: " + container.name)
+            //     result["zzz"] = container.identifier
+            // }
         } catch {
             print("An error on containers")
         }
