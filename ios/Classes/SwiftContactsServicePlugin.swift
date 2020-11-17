@@ -519,7 +519,7 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
             for container in allContainers {
                 print("Container ID: " + container.identifier)
                 print("Container Name: " + container.name)
-                result["zzz"] = container.name
+                result["zzz"] = container.identifier
             }
         } catch {
             print("An error on containers")
