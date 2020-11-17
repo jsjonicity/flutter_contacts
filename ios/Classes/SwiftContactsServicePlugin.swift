@@ -523,7 +523,7 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
 
             // Loop the containers
             for container in allContainers {
-                intContainerType = container.type
+                intContainerType = container.type.toRaw()
                 print("Container ID: " + container.identifier)
                 print("Container Name: " + container.name)
                 thisZZZ = thisZZZ + ":" + container.name + " (" + ")"
