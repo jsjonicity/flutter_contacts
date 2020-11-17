@@ -511,20 +511,15 @@ public class SwiftContactsServicePlugin: NSObject, FlutterPlugin, CNContactViewC
         result["zzz"] = ""
         let store = CNContactStore()
         var allContainers: [CNContainer] = []
-        do {
-            allContainers = try store.containers(matching: nil)
+        
+            allContainers = store.containers(matching: nil)
 
-                // Loop the containers
-                for container in allContainers {
-                    print("Container ID: " + container.identifier)
-                    print("Container Name: " + container.name)
-                    result["zzz"] = container.name
-                } catch {
-                    print("Error Looping Containers")
-                }
-        } catch {
-            print("Error getting containers")
-        }
+            // Loop the containers
+            for container in allContainers {
+                print("Container ID: " + container.identifier)
+                print("Container Name: " + container.name)
+                result["zzz"] = container.name
+            }
 
         
 
