@@ -343,7 +343,7 @@ public class ContactsServicePlugin implements MethodCallHandler, FlutterPlugin, 
     }
   }
   
-    private void openDeviceContactPicker(Result result) {
+  private void openDeviceContactPicker(Result result) {
       if (delegate != null) {
         delegate.setResult(result);
         delegate.openContactPicker();
@@ -439,10 +439,10 @@ public class ContactsServicePlugin implements MethodCallHandler, FlutterPlugin, 
             // To stay backwards-compatible, return an empty byte array rather than `null`.
             c.avatar = new byte[0];
           }
-//          if ((Boolean) params[3])
-//              loadContactPhotoHighRes(c.identifier, (Boolean) params[3]);
-//          else
-//              setAvatarDataForContactIfAvailable(c);
+            //          if ((Boolean) params[3])
+            //              loadContactPhotoHighRes(c.identifier, (Boolean) params[3]);
+            //          else
+            //              setAvatarDataForContactIfAvailable(c);
         }
       }
 
@@ -667,8 +667,10 @@ public class ContactsServicePlugin implements MethodCallHandler, FlutterPlugin, 
     ArrayList<ContentProviderOperation> ops = new ArrayList<>();
 
     ContentProviderOperation.Builder op = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
-            .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
-            .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null);
+            //.withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+            //.withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null);
+            .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, "com.google")
+            .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, "jsjent@gmail.com");
     ops.add(op.build());
 
     op = ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
